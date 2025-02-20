@@ -58,5 +58,12 @@ namespace Presentacion
             this.Close();
         }
 
+        private void btnVer_Click(object sender, EventArgs e)
+        {
+            frmArticulo ventanaArticulo = new frmArticulo();
+            ventanaArticulo.ShowDialog();
+        }
+
+       
     }
 }
