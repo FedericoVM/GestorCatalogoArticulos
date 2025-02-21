@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using negocio;
+using dominio;
 
 namespace Presentacion
 {
     public partial class FormPrincipal : Form
     {
+        private List<Articulo> articulos;
         public FormPrincipal()
         {
             InitializeComponent();
@@ -51,6 +54,9 @@ namespace Presentacion
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             timer.Enabled = true;
+            cargar();
+           
+            
         }
 
         private void btnSalir_Click_1(object sender, EventArgs e)
@@ -64,6 +70,24 @@ namespace Presentacion
             ventanaArticulo.ShowDialog();
         }
 
-       
+        private void cargar()
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            try
+            {
+                articulos = negocio.listarArticulos();
+                dgvForm.DataSource = articulos;
+                dgvForm.Columns["UrlImagen"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+
     }
 }

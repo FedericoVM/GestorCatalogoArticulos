@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.btnVer = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -43,6 +46,10 @@
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrarVentana = new System.Windows.Forms.Button();
             this.panelMenuLateral = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.comboBoxCategoriaBusq = new System.Windows.Forms.ComboBox();
+            this.comboBoxMarcaBusq = new System.Windows.Forms.ComboBox();
+            this.labelCategoriaBusq = new System.Windows.Forms.Label();
             this.txtNombreBusq = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.labelPrecioMax = new System.Windows.Forms.Label();
@@ -65,19 +72,15 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.panelBtns = new System.Windows.Forms.Panel();
             this.labelApellidoUusario = new System.Windows.Forms.Label();
-            this.labelCategoriaBusq = new System.Windows.Forms.Label();
-            this.comboBoxMarcaBusq = new System.Windows.Forms.ComboBox();
-            this.comboBoxCategoriaBusq = new System.Windows.Forms.ComboBox();
             this.panelHoraUsuario = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.circularPictureBox1 = new Presentacion.CircularPictureBox();
             this.panelCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenuLateral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvForm)).BeginInit();
             this.panelBtns.SuspendLayout();
             this.panelHoraUsuario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -278,6 +281,44 @@
             this.panelMenuLateral.Size = new System.Drawing.Size(251, 660);
             this.panelMenuLateral.TabIndex = 8;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(210, 90);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(18, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.TabIndex = 29;
+            this.pictureBox2.TabStop = false;
+            // 
+            // comboBoxCategoriaBusq
+            // 
+            this.comboBoxCategoriaBusq.FormattingEnabled = true;
+            this.comboBoxCategoriaBusq.Location = new System.Drawing.Point(101, 285);
+            this.comboBoxCategoriaBusq.Name = "comboBoxCategoriaBusq";
+            this.comboBoxCategoriaBusq.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxCategoriaBusq.TabIndex = 4;
+            // 
+            // comboBoxMarcaBusq
+            // 
+            this.comboBoxMarcaBusq.FormattingEnabled = true;
+            this.comboBoxMarcaBusq.Location = new System.Drawing.Point(101, 244);
+            this.comboBoxMarcaBusq.Name = "comboBoxMarcaBusq";
+            this.comboBoxMarcaBusq.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxMarcaBusq.TabIndex = 3;
+            // 
+            // labelCategoriaBusq
+            // 
+            this.labelCategoriaBusq.AutoSize = true;
+            this.labelCategoriaBusq.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCategoriaBusq.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
+            this.labelCategoriaBusq.Location = new System.Drawing.Point(12, 284);
+            this.labelCategoriaBusq.Name = "labelCategoriaBusq";
+            this.labelCategoriaBusq.Size = new System.Drawing.Size(76, 18);
+            this.labelCategoriaBusq.TabIndex = 26;
+            this.labelCategoriaBusq.Text = "Categoría:";
+            // 
             // txtNombreBusq
             // 
             this.txtNombreBusq.Location = new System.Drawing.Point(101, 204);
@@ -447,9 +488,38 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvForm.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(58)))), ((int)(((byte)(69)))));
-            this.dgvForm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvForm.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvForm.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvForm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvForm.ColumnHeadersHeight = 29;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(65)))), ((int)(((byte)(73)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvForm.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvForm.EnableHeadersVisualStyles = false;
+            this.dgvForm.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(54)))));
             this.dgvForm.Location = new System.Drawing.Point(261, 93);
             this.dgvForm.Name = "dgvForm";
+            this.dgvForm.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvForm.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvForm.Size = new System.Drawing.Size(667, 475);
             this.dgvForm.TabIndex = 9;
             // 
@@ -521,33 +591,6 @@
             this.labelApellidoUusario.Text = "Apellido:";
             this.labelApellidoUusario.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // labelCategoriaBusq
-            // 
-            this.labelCategoriaBusq.AutoSize = true;
-            this.labelCategoriaBusq.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCategoriaBusq.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
-            this.labelCategoriaBusq.Location = new System.Drawing.Point(12, 284);
-            this.labelCategoriaBusq.Name = "labelCategoriaBusq";
-            this.labelCategoriaBusq.Size = new System.Drawing.Size(76, 18);
-            this.labelCategoriaBusq.TabIndex = 26;
-            this.labelCategoriaBusq.Text = "Categoría:";
-            // 
-            // comboBoxMarcaBusq
-            // 
-            this.comboBoxMarcaBusq.FormattingEnabled = true;
-            this.comboBoxMarcaBusq.Location = new System.Drawing.Point(101, 244);
-            this.comboBoxMarcaBusq.Name = "comboBoxMarcaBusq";
-            this.comboBoxMarcaBusq.Size = new System.Drawing.Size(130, 21);
-            this.comboBoxMarcaBusq.TabIndex = 3;
-            // 
-            // comboBoxCategoriaBusq
-            // 
-            this.comboBoxCategoriaBusq.FormattingEnabled = true;
-            this.comboBoxCategoriaBusq.Location = new System.Drawing.Point(101, 285);
-            this.comboBoxCategoriaBusq.Name = "comboBoxCategoriaBusq";
-            this.comboBoxCategoriaBusq.Size = new System.Drawing.Size(130, 21);
-            this.comboBoxCategoriaBusq.TabIndex = 4;
-            // 
             // panelHoraUsuario
             // 
             this.panelHoraUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -562,17 +605,6 @@
             this.panelHoraUsuario.Name = "panelHoraUsuario";
             this.panelHoraUsuario.Size = new System.Drawing.Size(864, 120);
             this.panelHoraUsuario.TabIndex = 14;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(210, 90);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(18, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 29;
-            this.pictureBox2.TabStop = false;
             // 
             // circularPictureBox1
             // 
@@ -616,11 +648,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMenuLateral.ResumeLayout(false);
             this.panelMenuLateral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvForm)).EndInit();
             this.panelBtns.ResumeLayout(false);
             this.panelHoraUsuario.ResumeLayout(false);
             this.panelHoraUsuario.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
