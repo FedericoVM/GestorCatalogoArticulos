@@ -168,7 +168,27 @@ namespace negocio
 
         }
 
-      
+        public void eliminarArticulo(int idArticulo) 
+        {
+            BaseDatos baseDatos = new BaseDatos();
+
+            try
+            {
+                baseDatos.setConsulta("Delete from ARTICULOS where ARTICULOS.Id = @Id");
+                baseDatos.setParametros("@Id", idArticulo);
+                baseDatos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
+                baseDatos.cerrarConexion();
+            }
+        
+        }
 
     }
 }

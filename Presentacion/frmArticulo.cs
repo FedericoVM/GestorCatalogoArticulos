@@ -266,9 +266,6 @@ namespace Presentacion
         
         }
 
-     
-
-        
         private void txtCodArticulo_Leave(object sender, EventArgs e)
         {
             formatoCodigoArticulo();
@@ -279,8 +276,6 @@ namespace Presentacion
         {
             formatoCodigoArticulo();
         }
-
-     
 
         private void txtNombre_Leave(object sender, EventArgs e)
         {

@@ -119,6 +119,27 @@ namespace Presentacion
         {
             cargar();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            DialogResult resultado = MessageBox.Show("¿Deseas borrar el articulo de la base de datos? ", "Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            try
+            {
+                if (resultado == DialogResult.Yes )
+                {
+                    Articulo articulo = (Articulo)dgvForm.CurrentRow.DataBoundItem;
+                    negocio.eliminarArticulo(articulo.Id);
+                    MessageBox.Show("Se elimino correctamente. Actualizar la lista para ver los cambios", "Eliminar");
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 
 
