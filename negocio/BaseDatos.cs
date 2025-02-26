@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Windows.Input;
 
 namespace negocio
 {
@@ -43,6 +44,20 @@ namespace negocio
             }
         }
 
+        public void ejecutarLectura()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex; 
+            }
+        }
         public void cerrarConexion()
         {
             if (lector != null)
@@ -51,6 +66,10 @@ namespace negocio
             }
 
             conexion.Close();
+        }
+        public void setParametros(string atributo, object valor)
+        {
+            comando.Parameters.AddWithValue(atributo, valor);
         }
 
     }

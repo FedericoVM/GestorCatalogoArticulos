@@ -15,6 +15,7 @@ namespace Presentacion
     public partial class FormPrincipal : Form
     {
         private List<Articulo> articulos;
+
         public FormPrincipal()
         {
             InitializeComponent();
@@ -55,8 +56,6 @@ namespace Presentacion
         {
             timer.Enabled = true;
             cargar();
-           
-            
         }
 
         private void btnSalir_Click_1(object sender, EventArgs e)
@@ -66,8 +65,22 @@ namespace Presentacion
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-            frmArticulo ventanaArticulo = new frmArticulo();
-            ventanaArticulo.ShowDialog();
+          
+            Articulo aux = (Articulo)dgvForm.CurrentRow.DataBoundItem;
+      
+            try
+            {
+                frmArticulo ventanaArticulo = new frmArticulo(aux);
+                ventanaArticulo.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+           
+           
+
         }
 
         private void cargar()
@@ -78,7 +91,8 @@ namespace Presentacion
             {
                 articulos = negocio.listarArticulos();
                 dgvForm.DataSource = articulos;
-                dgvForm.Columns["UrlImagen"].Visible = false;
+                ocultarColumnas();
+
             }
             catch (Exception ex)
             {
@@ -88,6 +102,25 @@ namespace Presentacion
 
         }
 
+        private void ocultarColumnas()
+        {
+            dgvForm.Columns["Descripcion"].Visible = false;
+            dgvForm.Columns["ImagenUrl"].Visible = false;
+            dgvForm.Columns["Categoria"].Visible = false;
+        }
 
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmArticulo nuevaVentana = new frmArticulo();
+            nuevaVentana.ShowDialog();
+        }
+
+        private void btnActualizarListado_Click(object sender, EventArgs e)
+        {
+            cargar();
+        }
     }
+
+
+
 }
