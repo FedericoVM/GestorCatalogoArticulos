@@ -17,6 +17,17 @@ namespace Presentacion
     public partial class frmArticulo : Form
     {
         Articulo articulo = null;
+        private bool editarArticulo = false;
+
+        public bool EditarArticulo
+        {
+            get { return editarArticulo; }
+            set
+            {
+                editarArticulo = value;
+            }
+        }
+
         public frmArticulo()
         {
             InitializeComponent();
@@ -27,6 +38,7 @@ namespace Presentacion
             InitializeComponent();
             this.articulo = articulo;
         }
+
 
         private void btnSalirArticulo_Click(object sender, EventArgs e)
         {
@@ -44,23 +56,26 @@ namespace Presentacion
                 if (articulo != null)
 
                 {
-                    
-                    txtCodArticulo.Text = articulo.Codigo;
-                    txtNombre.Text = articulo.Nombre;
-                    txtUrlImagen.Text = articulo.ImagenUrl;
-                    cargarImagen(articulo.ImagenUrl);
-                    txtPrecio.Text = articulo.Precio.ToString();
-                    txtDescripcion.Text = articulo.Descripcion;
-                    comboBoxMarca.SelectedValue = articulo.Marca.Id;
-                    comboBoxCategoria.SelectedValue = articulo.Categoria.Id;
-                    descativarInputs();
-                    btnAceptar.Visible = false;
+                    if (EditarArticulo == true)
+                    {
+                        btnAceptar.Text = "Aceptar cambios";
+                        btnAceptar.Enabled = false;
+                        cargarInputs(articulo);
+                        activarInputs();
+                        
+
+                    } else
+                    {
+                        cargarInputs(articulo);
+                        descativarInputs();
+                        btnAceptar.Visible = false;
+                    }
+                
                 }
                 else
                 {
                     articulo = new Articulo();
                     activarInputs(); 
-                
                 }
              
 
@@ -70,6 +85,18 @@ namespace Presentacion
                 MessageBox.Show(ex.ToString());
             }
          
+        }
+
+        private void cargarInputs(Articulo articulo)
+        {
+            txtCodArticulo.Text = articulo.Codigo;
+            txtNombre.Text = articulo.Nombre;
+            txtUrlImagen.Text = articulo.ImagenUrl;
+            cargarImagen(articulo.ImagenUrl);
+            txtPrecio.Text = articulo.Precio.ToString();
+            txtDescripcion.Text = articulo.Descripcion;
+            comboBoxMarca.SelectedValue = articulo.Marca.Id;
+            comboBoxCategoria.SelectedValue = articulo.Categoria.Id;
         }
 
         private void cargarImagen(string url)
@@ -134,14 +161,18 @@ namespace Presentacion
                 }
                 articulo.Precio = decimal.Parse(txtPrecio.Text);
                 articulo.Descripcion = txtDescripcion.Text;
-                negocio.agregarArticulo(articulo);
-                MessageBox.Show("Se agrego correctamente el articulo. Actualice la lista para ver los cambios");
+                if (editarArticulo == true)
+                {
+                    negocio.modificar(articulo);
+                    MessageBox.Show("Se agregaron los cambios correctamente. Actualice la lista para ver los cambios");
+                    
+                } else
+                {
+                    negocio.agregarArticulo(articulo);
+                    MessageBox.Show("Se agrego correctamente el articulo. Actualice la lista para ver los cambios");
+                }
 
                 this.Close();
-
-              
-
-               
 
             }
             catch (Exception ex)
@@ -152,8 +183,8 @@ namespace Presentacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            agregarNuevoArticulo(articulo);
-            this.Close();
+                agregarNuevoArticulo(articulo);
+                this.Close();
         }
 
         private void cargarComboBox()
@@ -186,6 +217,7 @@ namespace Presentacion
  
             if (!(regexCodigo.IsMatch(codigo)))
             {
+                labelValidacionCodigo.Visible = true;
                 labelValidacionCodigo.Text = "Error! Formato incorrecto";
                 txtNombre.Enabled = false;
                 txtDescripcion.Enabled = false;
@@ -198,7 +230,6 @@ namespace Presentacion
 
             } else
             {
-                labelValidacionCodigo.Text = "";
                 labelValidacionCodigo.Visible = false;
                 activarInputs();
                 return true;
@@ -217,6 +248,7 @@ namespace Presentacion
 
             if (!(regex.IsMatch(nombre)))
             {
+                labelValidacionNombre.Visible = true;
                 labelValidacionNombre.Text = "Error! No puede estar vacio. Debe contener letra/as";
                 txtDescripcion.Enabled = false;
                 comboBoxCategoria.Enabled = false;
@@ -246,6 +278,7 @@ namespace Presentacion
 
             if (!(regexPrecio.IsMatch(precio)))
             {
+                labelValidacionPrecio.Visible = true;
                 labelValidacionPrecio.Text = "Error!Formato incorrecto";
                 txtCodArticulo.Enabled = false;
                 txtNombre.Enabled = false;

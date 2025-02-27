@@ -140,6 +140,24 @@ namespace Presentacion
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            Articulo articuloEditar = new Articulo();
+        
+            try
+            {
+                articuloEditar = (Articulo)dgvForm.CurrentRow.DataBoundItem;
+                frmArticulo formArticulo = new frmArticulo(articuloEditar);
+                formArticulo.EditarArticulo = true;
+                formArticulo.ShowDialog();
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString()) ;
+            }
+        }
     }
 
 
