@@ -282,7 +282,8 @@ namespace negocio
                     art.Categoria = new Categoria();
                     art.Categoria.Id = (int)accesoBD.Lector["CategoriaId"];
                     art.Categoria.Descripcion = (string)accesoBD.Lector["NombreCategoria"];
-                    art.Precio = (decimal)accesoBD.Lector["Precio"];
+                    decimal num = (decimal)accesoBD.Lector["Precio"];
+                    art.Precio = Math.Floor(num);
 
                     articulos.Add(art);
    
@@ -333,7 +334,8 @@ namespace negocio
                     art.Categoria = new Categoria();
                     art.Categoria.Id = (int)baseDatos.Lector["CategoriaId"];
                     art.Categoria.Descripcion = (string)baseDatos.Lector["NombreCategoria"];
-                    art.Precio = (decimal)baseDatos.Lector["Precio"];
+                    decimal num = (decimal)baseDatos.Lector["Precio"];
+                    art.Precio = Math.Floor(num);
 
                     articulos.Add(art);
 
