@@ -219,5 +219,134 @@ namespace negocio
                 baseDatos.cerrarConexion();
             }
         }
+
+        public List<Articulo> filtrar(string nombre, string marca, string categoria,decimal precioMinimo, decimal precioMaximo)
+        {
+            BaseDatos accesoBD = new BaseDatos();
+
+            List<Articulo> articulos = new List<Articulo>();
+
+            try
+            {
+                accesoBD.setConsulta(@"
+                SELECT 
+                    A.Codigo, 
+                    A.Nombre, 
+                    A.Id, 
+                    A.Precio, 
+                    A.Descripcion, 
+                    M.Id AS MarcaId, 
+                    M.Descripcion AS NombreMarca, 
+                    C.Id AS CategoriaId, 
+                    C.Descripcion AS NombreCategoria, 
+                    A.ImagenUrl 
+                FROM 
+                    ARTICULOS A, 
+                    MARCAS M, 
+                    CATEGORIAS C 
+                WHERE 
+                    A.IdCategoria = C.Id 
+                    AND A.IdMarca = M.Id 
+                    AND (A.Nombre COLLATE Latin1_General_CI_AI LIKE '%' + @nombre + '%' OR @nombre = '')
+                    AND (M.Descripcion LIKE '%' + @marca + '%' OR @marca = '')
+                    AND (C.Descripcion LIKE '%' + @categoria + '%' OR @categoria = '')
+                    AND ( (@precioMinimo = 0.00 AND @precioMaximo = 0.00) 
+                        OR (A.Precio >= @precioMinimo AND A.Precio <= @precioMaximo) 
+                        );");
+               
+                accesoBD.setParametros("@nombre", nombre);
+                accesoBD.setParametros("@marca",marca);
+                accesoBD.setParametros("@categoria",categoria);
+                accesoBD.setParametros("@precioMinimo", precioMinimo);
+                accesoBD.setParametros("@precioMaximo", precioMaximo);
+                accesoBD.ejecutarConsulta();
+                
+
+
+                while (accesoBD.Lector.Read())
+                {
+                    Articulo art = new Articulo();
+                    art.Id = (int)accesoBD.Lector["Id"];
+                    art.Codigo = (string)accesoBD.Lector["Codigo"];
+                    art.Nombre = (string)accesoBD.Lector["Nombre"];
+                    art.Descripcion = (string)accesoBD.Lector["Descripcion"];
+                    if (!(accesoBD.Lector["ImagenUrl"] is DBNull))
+                    {
+                        art.ImagenUrl = (string)accesoBD.Lector["ImagenUrl"];
+                    }
+
+                    art.Marca = new Marca();
+                    art.Marca.Id = (int)accesoBD.Lector["MarcaId"];
+                    art.Marca.Descripcion = (string)accesoBD.Lector["NombreMarca"];
+                    art.Categoria = new Categoria();
+                    art.Categoria.Id = (int)accesoBD.Lector["CategoriaId"];
+                    art.Categoria.Descripcion = (string)accesoBD.Lector["NombreCategoria"];
+                    art.Precio = (decimal)accesoBD.Lector["Precio"];
+
+                    articulos.Add(art);
+   
+                }
+
+                return articulos;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                accesoBD.cerrarConexion();
+            }
+
+        }
+
+        public List<Articulo> buscarSoloNombre(string nombre)
+        {
+            BaseDatos baseDatos = new BaseDatos();
+
+            List<Articulo> articulos = new List<Articulo>();
+
+            try
+            {
+                baseDatos.setConsulta("Select Codigo, Nombre,A.Id,Precio ,A.Descripcion,M.Id MarcaId, M.Descripcion NombreMarca,C.Id CategoriaId,C.Descripcion NombreCategoria, ImagenUrl from ARTICULOS A, MARCAS M, CATEGORIAS C Where A.IdCategoria = C.Id AND A.IdMarca = M.Id AND Nombre COLLATE Latin1_General_CI_AI LIKE '%' + @nombre + '%' ");
+                baseDatos.setParametros("@nombre", nombre);
+                baseDatos.ejecutarConsulta();
+
+                while (baseDatos.Lector.Read())
+                {
+                    Articulo art = new Articulo();
+                    art.Id = (int)baseDatos.Lector["Id"];
+                    art.Codigo = (string)baseDatos.Lector["Codigo"];
+                    art.Nombre = (string)baseDatos.Lector["Nombre"];
+                    art.Descripcion = (string)baseDatos.Lector["Descripcion"];
+                    if (!(baseDatos.Lector["ImagenUrl"] is DBNull))
+                    {
+                        art.ImagenUrl = (string)baseDatos.Lector["ImagenUrl"];
+                    }
+
+                    art.Marca = new Marca();
+                    art.Marca.Id = (int)baseDatos.Lector["MarcaId"];
+                    art.Marca.Descripcion = (string)baseDatos.Lector["NombreMarca"];
+                    art.Categoria = new Categoria();
+                    art.Categoria.Id = (int)baseDatos.Lector["CategoriaId"];
+                    art.Categoria.Descripcion = (string)baseDatos.Lector["NombreCategoria"];
+                    art.Precio = (decimal)baseDatos.Lector["Precio"];
+
+                    articulos.Add(art);
+
+                }
+
+                return articulos;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

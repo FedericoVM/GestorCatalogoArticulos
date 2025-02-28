@@ -46,22 +46,21 @@
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrarVentana = new System.Windows.Forms.Button();
             this.panelMenuLateral = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.comboBoxCategoriaBusq = new System.Windows.Forms.ComboBox();
-            this.comboBoxMarcaBusq = new System.Windows.Forms.ComboBox();
+            this.comboBoxCategoriaBusqueda = new System.Windows.Forms.ComboBox();
+            this.comboBoxMarcaBusqueda = new System.Windows.Forms.ComboBox();
             this.labelCategoriaBusq = new System.Windows.Forms.Label();
-            this.txtNombreBusq = new System.Windows.Forms.TextBox();
+            this.txtNombreBusqueda = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.labelPrecioMax = new System.Windows.Forms.Label();
-            this.txtPrecioMax = new System.Windows.Forms.TextBox();
+            this.txtPrecioMaxBusqueda = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.labelPrecioMin = new System.Windows.Forms.Label();
-            this.txtPrecioMin = new System.Windows.Forms.TextBox();
+            this.txtPrecioMinBusqueda = new System.Windows.Forms.TextBox();
             this.labelPrecioBusq = new System.Windows.Forms.Label();
             this.labelNombreBusq = new System.Windows.Forms.Label();
             this.labelMarcaBusq = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtBusqPrincipal = new System.Windows.Forms.TextBox();
+            this.txtBusquedaPrincipal = new System.Windows.Forms.TextBox();
             this.labelBusqTitulo = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.labelNombreUsuario = new System.Windows.Forms.Label();
@@ -74,11 +73,13 @@
             this.labelApellidoUusario = new System.Windows.Forms.Label();
             this.panelHoraUsuario = new System.Windows.Forms.Panel();
             this.btnActualizarListado = new System.Windows.Forms.Button();
+            this.checkBoxactivarFiltro = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.circularPictureBox1 = new Presentacion.CircularPictureBox();
+            this.btnBusquedaSimple = new System.Windows.Forms.Button();
             this.panelCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenuLateral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvForm)).BeginInit();
             this.panelBtns.SuspendLayout();
             this.panelHoraUsuario.SuspendLayout();
@@ -261,56 +262,49 @@
             // 
             this.panelMenuLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(54)))));
             this.panelMenuLateral.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelMenuLateral.Controls.Add(this.pictureBox2);
-            this.panelMenuLateral.Controls.Add(this.comboBoxCategoriaBusq);
-            this.panelMenuLateral.Controls.Add(this.comboBoxMarcaBusq);
+            this.panelMenuLateral.Controls.Add(this.btnBusquedaSimple);
+            this.panelMenuLateral.Controls.Add(this.checkBoxactivarFiltro);
+            this.panelMenuLateral.Controls.Add(this.comboBoxCategoriaBusqueda);
+            this.panelMenuLateral.Controls.Add(this.comboBoxMarcaBusqueda);
             this.panelMenuLateral.Controls.Add(this.labelCategoriaBusq);
-            this.panelMenuLateral.Controls.Add(this.txtNombreBusq);
+            this.panelMenuLateral.Controls.Add(this.txtNombreBusqueda);
             this.panelMenuLateral.Controls.Add(this.btnBuscar);
             this.panelMenuLateral.Controls.Add(this.labelPrecioMax);
-            this.panelMenuLateral.Controls.Add(this.txtPrecioMax);
+            this.panelMenuLateral.Controls.Add(this.txtPrecioMaxBusqueda);
             this.panelMenuLateral.Controls.Add(this.label10);
             this.panelMenuLateral.Controls.Add(this.labelPrecioMin);
-            this.panelMenuLateral.Controls.Add(this.txtPrecioMin);
+            this.panelMenuLateral.Controls.Add(this.txtPrecioMinBusqueda);
             this.panelMenuLateral.Controls.Add(this.labelPrecioBusq);
             this.panelMenuLateral.Controls.Add(this.labelNombreBusq);
             this.panelMenuLateral.Controls.Add(this.labelMarcaBusq);
             this.panelMenuLateral.Controls.Add(this.label5);
-            this.panelMenuLateral.Controls.Add(this.txtBusqPrincipal);
+            this.panelMenuLateral.Controls.Add(this.txtBusquedaPrincipal);
             this.panelMenuLateral.Controls.Add(this.labelBusqTitulo);
             this.panelMenuLateral.Controls.Add(this.btnSalir);
+            this.panelMenuLateral.Controls.Add(this.panel1);
             this.panelMenuLateral.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenuLateral.Location = new System.Drawing.Point(0, 40);
             this.panelMenuLateral.Name = "panelMenuLateral";
             this.panelMenuLateral.Size = new System.Drawing.Size(251, 660);
             this.panelMenuLateral.TabIndex = 8;
             // 
-            // pictureBox2
+            // comboBoxCategoriaBusqueda
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(210, 90);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(18, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 29;
-            this.pictureBox2.TabStop = false;
+            this.comboBoxCategoriaBusqueda.Enabled = false;
+            this.comboBoxCategoriaBusqueda.FormattingEnabled = true;
+            this.comboBoxCategoriaBusqueda.Location = new System.Drawing.Point(101, 285);
+            this.comboBoxCategoriaBusqueda.Name = "comboBoxCategoriaBusqueda";
+            this.comboBoxCategoriaBusqueda.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxCategoriaBusqueda.TabIndex = 4;
             // 
-            // comboBoxCategoriaBusq
+            // comboBoxMarcaBusqueda
             // 
-            this.comboBoxCategoriaBusq.FormattingEnabled = true;
-            this.comboBoxCategoriaBusq.Location = new System.Drawing.Point(101, 285);
-            this.comboBoxCategoriaBusq.Name = "comboBoxCategoriaBusq";
-            this.comboBoxCategoriaBusq.Size = new System.Drawing.Size(130, 21);
-            this.comboBoxCategoriaBusq.TabIndex = 4;
-            // 
-            // comboBoxMarcaBusq
-            // 
-            this.comboBoxMarcaBusq.FormattingEnabled = true;
-            this.comboBoxMarcaBusq.Location = new System.Drawing.Point(101, 244);
-            this.comboBoxMarcaBusq.Name = "comboBoxMarcaBusq";
-            this.comboBoxMarcaBusq.Size = new System.Drawing.Size(130, 21);
-            this.comboBoxMarcaBusq.TabIndex = 3;
+            this.comboBoxMarcaBusqueda.Enabled = false;
+            this.comboBoxMarcaBusqueda.FormattingEnabled = true;
+            this.comboBoxMarcaBusqueda.Location = new System.Drawing.Point(101, 244);
+            this.comboBoxMarcaBusqueda.Name = "comboBoxMarcaBusqueda";
+            this.comboBoxMarcaBusqueda.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxMarcaBusqueda.TabIndex = 3;
             // 
             // labelCategoriaBusq
             // 
@@ -323,12 +317,13 @@
             this.labelCategoriaBusq.TabIndex = 26;
             this.labelCategoriaBusq.Text = "Categoría:";
             // 
-            // txtNombreBusq
+            // txtNombreBusqueda
             // 
-            this.txtNombreBusq.Location = new System.Drawing.Point(101, 204);
-            this.txtNombreBusq.Name = "txtNombreBusq";
-            this.txtNombreBusq.Size = new System.Drawing.Size(130, 20);
-            this.txtNombreBusq.TabIndex = 2;
+            this.txtNombreBusqueda.Enabled = false;
+            this.txtNombreBusqueda.Location = new System.Drawing.Point(101, 204);
+            this.txtNombreBusqueda.Name = "txtNombreBusqueda";
+            this.txtNombreBusqueda.Size = new System.Drawing.Size(130, 20);
+            this.txtNombreBusqueda.TabIndex = 2;
             // 
             // btnBuscar
             // 
@@ -342,6 +337,7 @@
             this.btnBuscar.TabIndex = 7;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // labelPrecioMax
             // 
@@ -354,13 +350,15 @@
             this.labelPrecioMax.TabIndex = 23;
             this.labelPrecioMax.Text = "Máx.";
             // 
-            // txtPrecioMax
+            // txtPrecioMaxBusqueda
             // 
-            this.txtPrecioMax.Location = new System.Drawing.Point(176, 355);
-            this.txtPrecioMax.Name = "txtPrecioMax";
-            this.txtPrecioMax.Size = new System.Drawing.Size(56, 20);
-            this.txtPrecioMax.TabIndex = 6;
-            this.txtPrecioMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPrecioMaxBusqueda.Enabled = false;
+            this.txtPrecioMaxBusqueda.Location = new System.Drawing.Point(176, 355);
+            this.txtPrecioMaxBusqueda.Name = "txtPrecioMaxBusqueda";
+            this.txtPrecioMaxBusqueda.Size = new System.Drawing.Size(56, 20);
+            this.txtPrecioMaxBusqueda.TabIndex = 6;
+            this.txtPrecioMaxBusqueda.Text = "0,00";
+            this.txtPrecioMaxBusqueda.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label10
             // 
@@ -384,13 +382,15 @@
             this.labelPrecioMin.TabIndex = 20;
             this.labelPrecioMin.Text = "Mín.";
             // 
-            // txtPrecioMin
+            // txtPrecioMinBusqueda
             // 
-            this.txtPrecioMin.Location = new System.Drawing.Point(51, 355);
-            this.txtPrecioMin.Name = "txtPrecioMin";
-            this.txtPrecioMin.Size = new System.Drawing.Size(56, 20);
-            this.txtPrecioMin.TabIndex = 5;
-            this.txtPrecioMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPrecioMinBusqueda.Enabled = false;
+            this.txtPrecioMinBusqueda.Location = new System.Drawing.Point(51, 355);
+            this.txtPrecioMinBusqueda.Name = "txtPrecioMinBusqueda";
+            this.txtPrecioMinBusqueda.Size = new System.Drawing.Size(56, 20);
+            this.txtPrecioMinBusqueda.TabIndex = 5;
+            this.txtPrecioMinBusqueda.Text = "0,00";
+            this.txtPrecioMinBusqueda.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // labelPrecioBusq
             // 
@@ -436,13 +436,14 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Filtro Avanzado";
             // 
-            // txtBusqPrincipal
+            // txtBusquedaPrincipal
             // 
-            this.txtBusqPrincipal.Location = new System.Drawing.Point(20, 90);
-            this.txtBusqPrincipal.Name = "txtBusqPrincipal";
-            this.txtBusqPrincipal.Size = new System.Drawing.Size(211, 20);
-            this.txtBusqPrincipal.TabIndex = 1;
-            this.txtBusqPrincipal.Text = "Búsqueda";
+            this.txtBusquedaPrincipal.Location = new System.Drawing.Point(20, 90);
+            this.txtBusquedaPrincipal.Name = "txtBusquedaPrincipal";
+            this.txtBusquedaPrincipal.Size = new System.Drawing.Size(187, 20);
+            this.txtBusquedaPrincipal.TabIndex = 1;
+            this.txtBusquedaPrincipal.Text = "Buscar solo por nombre del articulo";
+           
             // 
             // labelBusqTitulo
             // 
@@ -625,6 +626,24 @@
             this.btnActualizarListado.UseVisualStyleBackColor = false;
             this.btnActualizarListado.Click += new System.EventHandler(this.btnActualizarListado_Click);
             // 
+            // checkBoxactivarFiltro
+            // 
+            this.checkBoxactivarFiltro.AutoSize = true;
+            this.checkBoxactivarFiltro.Location = new System.Drawing.Point(150, 166);
+            this.checkBoxactivarFiltro.Name = "checkBoxactivarFiltro";
+            this.checkBoxactivarFiltro.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxactivarFiltro.TabIndex = 30;
+            this.checkBoxactivarFiltro.UseVisualStyleBackColor = true;
+            this.checkBoxactivarFiltro.CheckedChanged += new System.EventHandler(this.checkBoxactivarFiltro_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(7, 153);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(235, 338);
+            this.panel1.TabIndex = 31;
+            // 
             // circularPictureBox1
             // 
             this.circularPictureBox1.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
@@ -640,6 +659,16 @@
             this.circularPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.circularPictureBox1.TabIndex = 10;
             this.circularPictureBox1.TabStop = false;
+            // 
+            // btnBusquedaSimple
+            // 
+            this.btnBusquedaSimple.Image = ((System.Drawing.Image)(resources.GetObject("btnBusquedaSimple.Image")));
+            this.btnBusquedaSimple.Location = new System.Drawing.Point(213, 89);
+            this.btnBusquedaSimple.Name = "btnBusquedaSimple";
+            this.btnBusquedaSimple.Size = new System.Drawing.Size(24, 21);
+            this.btnBusquedaSimple.TabIndex = 32;
+            this.btnBusquedaSimple.UseVisualStyleBackColor = true;
+            this.btnBusquedaSimple.Click += new System.EventHandler(this.btnBusquedaSimple_Click);
             // 
             // FormPrincipal
             // 
@@ -668,7 +697,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMenuLateral.ResumeLayout(false);
             this.panelMenuLateral.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvForm)).EndInit();
             this.panelBtns.ResumeLayout(false);
             this.panelHoraUsuario.ResumeLayout(false);
@@ -703,25 +731,27 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Panel panelBtns;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txtBusqPrincipal;
+        private System.Windows.Forms.TextBox txtBusquedaPrincipal;
         private System.Windows.Forms.Label labelBusqTitulo;
         private System.Windows.Forms.Label labelApellidoUusario;
         private System.Windows.Forms.Label labelNombreBusq;
         private System.Windows.Forms.Label labelMarcaBusq;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelPrecioMin;
-        private System.Windows.Forms.TextBox txtPrecioMin;
+        private System.Windows.Forms.TextBox txtPrecioMinBusqueda;
         private System.Windows.Forms.Label labelPrecioBusq;
         private System.Windows.Forms.Label labelPrecioMax;
-        private System.Windows.Forms.TextBox txtPrecioMax;
+        private System.Windows.Forms.TextBox txtPrecioMaxBusqueda;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtNombreBusq;
-        private System.Windows.Forms.ComboBox comboBoxCategoriaBusq;
-        private System.Windows.Forms.ComboBox comboBoxMarcaBusq;
+        private System.Windows.Forms.TextBox txtNombreBusqueda;
+        private System.Windows.Forms.ComboBox comboBoxCategoriaBusqueda;
+        private System.Windows.Forms.ComboBox comboBoxMarcaBusqueda;
         private System.Windows.Forms.Label labelCategoriaBusq;
         private System.Windows.Forms.Panel panelHoraUsuario;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnActualizarListado;
+        private System.Windows.Forms.CheckBox checkBoxactivarFiltro;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnBusquedaSimple;
     }
 }
 
