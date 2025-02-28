@@ -213,7 +213,7 @@ namespace Presentacion
         private bool formatoCodigoArticulo()
         {
             string codigo = txtCodArticulo.Text;
-            string patronCodigo = @"^[A-Za-z]\d{2}$";
+            string patronCodigo = @"^[A-Za-z]{1,2}\d{2,3}$";
 
             Regex regexCodigo = new Regex(patronCodigo);
  
