@@ -38,7 +38,8 @@ namespace negocio
                     art.Categoria = new Categoria();
                     art.Categoria.Id = (int)accesoDB.Lector["CategoriaId"];
                     art.Categoria.Descripcion = (string)accesoDB.Lector["NombreCategoria"];
-                    art.Precio = (decimal)accesoDB.Lector["Precio"];
+                    decimal num = (decimal)accesoDB.Lector["Precio"];
+                    art.Precio = Math.Floor(num);
 
                     articulos.Add(art);
                     

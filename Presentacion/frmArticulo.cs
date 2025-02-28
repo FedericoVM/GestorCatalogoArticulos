@@ -159,7 +159,9 @@ namespace Presentacion
                 {
                     articulo.ImagenUrl = "https://img.freepik.com/vector-premium/vector-icono-imagen-predeterminado-pagina-imagen-faltante-diseno-sitio-web-o-aplicacion-movil-no-hay-foto-disponible_87543-11093.jpg";
                 }
-                articulo.Precio = decimal.Parse(txtPrecio.Text);
+                decimal numDecimal;
+                decimal.TryParse(txtPrecio.Text, out numDecimal);
+                articulo.Precio = numDecimal;
                 articulo.Descripcion = txtDescripcion.Text;
                 if (editarArticulo == true)
                 {
@@ -272,7 +274,7 @@ namespace Presentacion
         {
 
             string precio = txtPrecio.Text;
-            string patronPrecio = @"^\d+,\d{2,4}$";
+            string patronPrecio = @"^\d+(\,\d{1,4})?$";
 
             Regex regexPrecio = new Regex(patronPrecio);
 
