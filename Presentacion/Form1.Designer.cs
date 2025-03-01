@@ -46,6 +46,8 @@
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnCerrarVentana = new System.Windows.Forms.Button();
             this.panelMenuLateral = new System.Windows.Forms.Panel();
+            this.btnBusquedaSimple = new System.Windows.Forms.Button();
+            this.checkBoxactivarFiltro = new System.Windows.Forms.CheckBox();
             this.comboBoxCategoriaBusqueda = new System.Windows.Forms.ComboBox();
             this.comboBoxMarcaBusqueda = new System.Windows.Forms.ComboBox();
             this.labelCategoriaBusq = new System.Windows.Forms.Label();
@@ -63,6 +65,7 @@
             this.txtBusquedaPrincipal = new System.Windows.Forms.TextBox();
             this.labelBusqTitulo = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.labelNombreUsuario = new System.Windows.Forms.Label();
             this.dgvForm = new System.Windows.Forms.DataGridView();
             this.labelHora = new System.Windows.Forms.Label();
@@ -73,10 +76,7 @@
             this.labelApellidoUusario = new System.Windows.Forms.Label();
             this.panelHoraUsuario = new System.Windows.Forms.Panel();
             this.btnActualizarListado = new System.Windows.Forms.Button();
-            this.checkBoxactivarFiltro = new System.Windows.Forms.CheckBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.circularPictureBox1 = new Presentacion.CircularPictureBox();
-            this.btnBusquedaSimple = new System.Windows.Forms.Button();
             this.panelCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenuLateral.SuspendLayout();
@@ -288,6 +288,26 @@
             this.panelMenuLateral.Size = new System.Drawing.Size(251, 660);
             this.panelMenuLateral.TabIndex = 8;
             // 
+            // btnBusquedaSimple
+            // 
+            this.btnBusquedaSimple.Image = ((System.Drawing.Image)(resources.GetObject("btnBusquedaSimple.Image")));
+            this.btnBusquedaSimple.Location = new System.Drawing.Point(213, 89);
+            this.btnBusquedaSimple.Name = "btnBusquedaSimple";
+            this.btnBusquedaSimple.Size = new System.Drawing.Size(24, 21);
+            this.btnBusquedaSimple.TabIndex = 32;
+            this.btnBusquedaSimple.UseVisualStyleBackColor = true;
+            this.btnBusquedaSimple.Click += new System.EventHandler(this.btnBusquedaSimple_Click);
+            // 
+            // checkBoxactivarFiltro
+            // 
+            this.checkBoxactivarFiltro.AutoSize = true;
+            this.checkBoxactivarFiltro.Location = new System.Drawing.Point(150, 166);
+            this.checkBoxactivarFiltro.Name = "checkBoxactivarFiltro";
+            this.checkBoxactivarFiltro.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxactivarFiltro.TabIndex = 30;
+            this.checkBoxactivarFiltro.UseVisualStyleBackColor = true;
+            this.checkBoxactivarFiltro.CheckedChanged += new System.EventHandler(this.checkBoxactivarFiltro_CheckedChanged);
+            // 
             // comboBoxCategoriaBusqueda
             // 
             this.comboBoxCategoriaBusqueda.Enabled = false;
@@ -443,7 +463,6 @@
             this.txtBusquedaPrincipal.Size = new System.Drawing.Size(187, 20);
             this.txtBusquedaPrincipal.TabIndex = 1;
             this.txtBusquedaPrincipal.Text = "Buscar solo por nombre del articulo";
-           
             // 
             // labelBusqTitulo
             // 
@@ -474,6 +493,14 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click_1);
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(7, 153);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(235, 338);
+            this.panel1.TabIndex = 31;
+            // 
             // labelNombreUsuario
             // 
             this.labelNombreUsuario.AutoSize = true;
@@ -492,6 +519,8 @@
             this.dgvForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvForm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvForm.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvForm.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(58)))), ((int)(((byte)(69)))));
             this.dgvForm.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvForm.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -613,6 +642,7 @@
             // 
             // btnActualizarListado
             // 
+            this.btnActualizarListado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnActualizarListado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(58)))), ((int)(((byte)(69)))));
             this.btnActualizarListado.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
             this.btnActualizarListado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -625,24 +655,6 @@
             this.btnActualizarListado.Text = "Actualizar";
             this.btnActualizarListado.UseVisualStyleBackColor = false;
             this.btnActualizarListado.Click += new System.EventHandler(this.btnActualizarListado_Click);
-            // 
-            // checkBoxactivarFiltro
-            // 
-            this.checkBoxactivarFiltro.AutoSize = true;
-            this.checkBoxactivarFiltro.Location = new System.Drawing.Point(150, 166);
-            this.checkBoxactivarFiltro.Name = "checkBoxactivarFiltro";
-            this.checkBoxactivarFiltro.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxactivarFiltro.TabIndex = 30;
-            this.checkBoxactivarFiltro.UseVisualStyleBackColor = true;
-            this.checkBoxactivarFiltro.CheckedChanged += new System.EventHandler(this.checkBoxactivarFiltro_CheckedChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(7, 153);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(235, 338);
-            this.panel1.TabIndex = 31;
             // 
             // circularPictureBox1
             // 
@@ -659,16 +671,6 @@
             this.circularPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.circularPictureBox1.TabIndex = 10;
             this.circularPictureBox1.TabStop = false;
-            // 
-            // btnBusquedaSimple
-            // 
-            this.btnBusquedaSimple.Image = ((System.Drawing.Image)(resources.GetObject("btnBusquedaSimple.Image")));
-            this.btnBusquedaSimple.Location = new System.Drawing.Point(213, 89);
-            this.btnBusquedaSimple.Name = "btnBusquedaSimple";
-            this.btnBusquedaSimple.Size = new System.Drawing.Size(24, 21);
-            this.btnBusquedaSimple.TabIndex = 32;
-            this.btnBusquedaSimple.UseVisualStyleBackColor = true;
-            this.btnBusquedaSimple.Click += new System.EventHandler(this.btnBusquedaSimple_Click);
             // 
             // FormPrincipal
             // 

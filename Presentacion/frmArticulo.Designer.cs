@@ -133,8 +133,6 @@
             this.txtPrecio.Size = new System.Drawing.Size(145, 20);
             this.txtPrecio.TabIndex = 4;
             this.txtPrecio.Text = "0.00";
-            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
-            this.txtPrecio.Leave += new System.EventHandler(this.txtPrecio_Leave);
             // 
             // txtDescripcion
             // 

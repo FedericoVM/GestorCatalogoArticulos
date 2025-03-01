@@ -131,8 +131,6 @@ namespace negocio
             }
         }
 
-
-    
         public void agregarArticulo(Articulo nuevoArticulo)
         {
             BaseDatos accesoBD = new BaseDatos();
@@ -160,13 +158,6 @@ namespace negocio
             {
                 accesoBD.cerrarConexion();
             }
-
-
-
-
-
-
-
         }
 
         public void eliminarArticulo(int idArticulo) 
@@ -348,6 +339,33 @@ namespace negocio
             {
 
                 throw ex;
+            }
+        }
+
+        public bool ExisteArticuloConCodigo(string codigo)
+        {
+            BaseDatos accesoBD = new BaseDatos();
+            try
+            {
+                accesoBD.setConsulta("SELECT COUNT(*) FROM ARTICULOS WHERE Codigo = @Codigo");
+                accesoBD.setParametros("@Codigo", codigo);
+                accesoBD.ejecutarConsulta();
+
+                if (accesoBD.Lector.Read())
+                {
+                    int cantidad = (int)accesoBD.Lector[0];
+                    return cantidad > 0;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoBD.cerrarConexion();
             }
         }
 

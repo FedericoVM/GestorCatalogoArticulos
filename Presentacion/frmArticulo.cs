@@ -79,6 +79,7 @@ namespace Presentacion
                 else
                 {
                     articulo = new Articulo();
+                    btnAgregarImagen.Enabled = true;
                     activarInputs(); 
                 }
              
@@ -140,7 +141,7 @@ namespace Presentacion
 
         private void activarBtnAgregar()
         {
-            if (formatoCodigoArticulo() && formatoNombre() && formatoPrecio())
+            if (formatoCodigoArticulo() && formatoNombre() )
             {
                 btnAceptar.Enabled = true;
             }
@@ -149,7 +150,6 @@ namespace Presentacion
 
         private void agregarNuevoArticulo(Articulo articulo)
         {
-
             ArticuloNegocio negocio = new ArticuloNegocio(); 
 
             try
@@ -169,13 +169,19 @@ namespace Presentacion
                 articulo.Descripcion = txtDescripcion.Text;
                 if (editarArticulo == true)
                 {
-                    negocio.modificar(articulo);
-                    MessageBox.Show("Se agregaron los cambios correctamente. Actualice la lista para ver los cambios");
-                    
+                        negocio.modificar(articulo);
+                        MessageBox.Show("Se agregaron los cambios correctamente. Actualice la lista para ver los cambios");
                 } else
                 {
-                    negocio.agregarArticulo(articulo);
-                    MessageBox.Show("Se agrego correctamente el articulo. Actualice la lista para ver los cambios");
+                    if (negocio.ExisteArticuloConCodigo(articulo.Codigo))
+                    {
+                        MessageBox.Show("Ya existe un articulo con ese codigo");
+                    } else
+                    {
+                        negocio.agregarArticulo(articulo);
+                        MessageBox.Show("Se agrego correctamente el articulo. Actualice la lista para ver los cambios");
+                    }
+                    
                 }
 
                 if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP:")))
@@ -260,7 +266,7 @@ namespace Presentacion
             if (!(regex.IsMatch(nombre)))
             {
                 labelValidacionNombre.Visible = true;
-                labelValidacionNombre.Text = "Error! No puede estar vacio. Debe contener letra/as";
+                labelValidacionNombre.Text = "Error! No puede estar vacio";
                 txtDescripcion.Enabled = false;
                 comboBoxCategoria.Enabled = false;
                 comboBoxMarca.Enabled = false;
@@ -323,34 +329,21 @@ namespace Presentacion
 
         private void txtNombre_Leave(object sender, EventArgs e)
         {
-            formatoNombre();
+
+            activarBtnAgregar();
+            
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            formatoNombre();
+            activarBtnAgregar();
         }
-
     
-        private void txtPrecio_Leave(object sender, EventArgs e)
-        {
-
-            if (formatoPrecio())
-            {
-                activarBtnAgregar();
-            }
-
-
-        }
-
         private void txtPrecio_TextChanged(object sender, EventArgs e)
         {
 
+            formatoPrecio();
 
-            if (formatoPrecio())
-            {
-                activarBtnAgregar();
-            }
         }
 
         private void txtUrlImagen_Leave(object sender, EventArgs e)
