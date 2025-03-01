@@ -69,19 +69,27 @@ namespace Presentacion
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-          
-            Articulo aux = (Articulo)dgvForm.CurrentRow.DataBoundItem;
-      
-            try
-            {
-                frmArticulo ventanaArticulo = new frmArticulo(aux);
-                ventanaArticulo.ShowDialog();
-            }
-            catch (Exception ex)
-            {
 
-                MessageBox.Show(ex.ToString());
+            if (dgvForm.CurrentRow != null)
+            {
+                Articulo aux = (Articulo)dgvForm.CurrentRow.DataBoundItem;
+                try
+                {
+                    frmArticulo ventanaArticulo = new frmArticulo(aux);
+                    ventanaArticulo.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.ToString());
+                }
             }
+            else
+            {
+                MessageBox.Show("Selecciona un articulo");
+            }
+
+          
            
            
 
@@ -149,7 +157,7 @@ namespace Presentacion
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             DialogResult resultado = MessageBox.Show("¿Deseas borrar el articulo de la base de datos? ", "Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
+            
             try
             {
                 if (resultado == DialogResult.Yes )
@@ -169,19 +177,25 @@ namespace Presentacion
         private void btnEditar_Click(object sender, EventArgs e)
         {
             Articulo articuloEditar = new Articulo();
-        
-            try
+            if (dgvForm.CurrentRow != null)
             {
-                articuloEditar = (Articulo)dgvForm.CurrentRow.DataBoundItem;
-                frmArticulo formArticulo = new frmArticulo(articuloEditar);
-                formArticulo.EditarArticulo = true;
-                formArticulo.ShowDialog();
-                
-            }
-            catch (Exception ex)
+                try
+                {
+                    articuloEditar = (Articulo)dgvForm.CurrentRow.DataBoundItem;
+                    frmArticulo formArticulo = new frmArticulo(articuloEditar);
+                    formArticulo.EditarArticulo = true;
+                    formArticulo.ShowDialog();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            } else
             {
-                MessageBox.Show(ex.ToString()) ;
+                MessageBox.Show("Selecciona un articulo");
             }
+               
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
