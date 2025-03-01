@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 
 namespace Presentacion
@@ -18,6 +20,7 @@ namespace Presentacion
     {
         Articulo articulo = null;
         private bool editarArticulo = false;
+        private OpenFileDialog archivo = null;
 
         public bool EditarArticulo
         {
@@ -60,6 +63,7 @@ namespace Presentacion
                     {
                         btnAceptar.Text = "Aceptar cambios";
                         btnAceptar.Enabled = false;
+                        btnAgregarImagen.Enabled = true;
                         cargarInputs(articulo);
                         activarInputs();
                         
@@ -172,6 +176,11 @@ namespace Presentacion
                 {
                     negocio.agregarArticulo(articulo);
                     MessageBox.Show("Se agrego correctamente el articulo. Actualice la lista para ver los cambios");
+                }
+
+                if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP:")))
+                {
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
                 }
 
                 this.Close();
@@ -325,17 +334,38 @@ namespace Presentacion
     
         private void txtPrecio_Leave(object sender, EventArgs e)
         {
+
+            if (formatoPrecio())
+            {
+                activarBtnAgregar();
+            }
+
+
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+
+
             if (formatoPrecio())
             {
                 activarBtnAgregar();
             }
         }
 
-        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        private void txtUrlImagen_Leave(object sender, EventArgs e)
         {
-            if (formatoPrecio())
+            cargarImagen(txtUrlImagen.Text);
+        }
+
+        private void btnAgregarImagen_Click_1(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg;| png|*.png;|wep|*.wep";
+            if (archivo.ShowDialog() == DialogResult.OK)
             {
-                activarBtnAgregar();
+                txtUrlImagen.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
             }
         }
     }

@@ -54,6 +54,7 @@
             this.labelValidacionPrecio = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.panelCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArticulo)).BeginInit();
@@ -166,9 +167,9 @@
             // pictureBoxArticulo
             // 
             this.pictureBoxArticulo.BackColor = System.Drawing.Color.Silver;
-            this.pictureBoxArticulo.Location = new System.Drawing.Point(389, 127);
+            this.pictureBoxArticulo.Location = new System.Drawing.Point(351, 133);
             this.pictureBoxArticulo.Name = "pictureBoxArticulo";
-            this.pictureBoxArticulo.Size = new System.Drawing.Size(202, 192);
+            this.pictureBoxArticulo.Size = new System.Drawing.Size(240, 240);
             this.pictureBoxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxArticulo.TabIndex = 22;
             this.pictureBoxArticulo.TabStop = false;
@@ -267,6 +268,7 @@
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(145, 20);
             this.txtUrlImagen.TabIndex = 29;
+            this.txtUrlImagen.Leave += new System.EventHandler(this.txtUrlImagen_Leave);
             // 
             // btnAceptar
             // 
@@ -329,12 +331,25 @@
             this.label3.TabIndex = 34;
             this.label3.Text = "( Ej: 4100,21  )";
             // 
+            // btnAgregarImagen
+            // 
+            this.btnAgregarImagen.Enabled = false;
+            this.btnAgregarImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarImagen.Location = new System.Drawing.Point(298, 254);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(25, 25);
+            this.btnAgregarImagen.TabIndex = 35;
+            this.btnAgregarImagen.Text = "+";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click_1);
+            // 
             // frmArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
             this.ClientSize = new System.Drawing.Size(603, 555);
+            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelValidacionPrecio);
@@ -399,5 +414,6 @@
         private System.Windows.Forms.Label labelValidacionPrecio;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnAgregarImagen;
     }
 }
