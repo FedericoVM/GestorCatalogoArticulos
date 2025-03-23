@@ -64,7 +64,12 @@ namespace Presentacion
 
         private void btnSalir_Click_1(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult salir = MessageBox.Show("¿Desea salir de la aplicación?","Cuidado", MessageBoxButtons.YesNo,MessageBoxIcon.Warning );
+            if (salir == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            
         }
 
         private void btnVer_Click(object sender, EventArgs e)
@@ -86,7 +91,7 @@ namespace Presentacion
             }
             else
             {
-                MessageBox.Show("Selecciona un articulo");
+                MessageBox.Show("Seleccionar un articulo", "¡Error!");
             }
 
           
@@ -156,22 +161,25 @@ namespace Presentacion
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            DialogResult resultado = MessageBox.Show("¿Deseas borrar el articulo de la base de datos? ", "Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            
+            DialogResult resultado = MessageBox.Show("¿Deseas borrar el articulo de la base de datos? ", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             try
             {
-                if (resultado == DialogResult.Yes )
+                if (resultado == DialogResult.Yes)
                 {
                     Articulo articulo = (Articulo)dgvForm.CurrentRow.DataBoundItem;
                     negocio.eliminarArticulo(articulo.Id);
                     MessageBox.Show("Se elimino correctamente. Actualizar la lista para ver los cambios", "Eliminar");
                 }
-               
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+
+
+
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -193,7 +201,7 @@ namespace Presentacion
                 }
             } else
             {
-                MessageBox.Show("Selecciona un articulo");
+                MessageBox.Show("Debe seleccionar un articulo","Error");
             }
                
         }
@@ -299,6 +307,12 @@ namespace Presentacion
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+
+        private void txtBusquedaPrincipal_Click(object sender, EventArgs e)
+        {
+            txtBusquedaPrincipal.Text = "";
         }
     }
 

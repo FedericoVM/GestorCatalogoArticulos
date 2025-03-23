@@ -52,7 +52,6 @@
             this.labelValidacionCodigo = new System.Windows.Forms.Label();
             this.labelValidacionNombre = new System.Windows.Forms.Label();
             this.labelValidacionPrecio = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.panelCabecera.SuspendLayout();
@@ -75,7 +74,7 @@
             this.labelTituloApp.AutoSize = true;
             this.labelTituloApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTituloApp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
-            this.labelTituloApp.Location = new System.Drawing.Point(69, 9);
+            this.labelTituloApp.Location = new System.Drawing.Point(73, 14);
             this.labelTituloApp.Name = "labelTituloApp";
             this.labelTituloApp.Size = new System.Drawing.Size(141, 13);
             this.labelTituloApp.TabIndex = 14;
@@ -111,8 +110,6 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(145, 20);
             this.txtNombre.TabIndex = 1;
-            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
-            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
             // 
             // txtCodArticulo
             // 
@@ -122,8 +119,8 @@
             this.txtCodArticulo.Name = "txtCodArticulo";
             this.txtCodArticulo.Size = new System.Drawing.Size(145, 20);
             this.txtCodArticulo.TabIndex = 0;
-            this.txtCodArticulo.TextChanged += new System.EventHandler(this.txtCodArticulo_TextChanged);
-            this.txtCodArticulo.Leave += new System.EventHandler(this.txtCodArticulo_Leave);
+            this.txtCodArticulo.Text = "Ej: A12, A123, AD213";
+            this.txtCodArticulo.Click += new System.EventHandler(this.txtCodArticulo_Click);
             // 
             // txtPrecio
             // 
@@ -270,7 +267,6 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Enabled = false;
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(54)))));
@@ -309,16 +305,6 @@
             this.labelValidacionPrecio.Size = new System.Drawing.Size(0, 13);
             this.labelValidacionPrecio.TabIndex = 32;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 109);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 13);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "( Ej: A12 | A123 | AD123 )";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -333,7 +319,7 @@
             // 
             this.btnAgregarImagen.Enabled = false;
             this.btnAgregarImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarImagen.Location = new System.Drawing.Point(298, 254);
+            this.btnAgregarImagen.Location = new System.Drawing.Point(298, 252);
             this.btnAgregarImagen.Name = "btnAgregarImagen";
             this.btnAgregarImagen.Size = new System.Drawing.Size(25, 25);
             this.btnAgregarImagen.TabIndex = 35;
@@ -349,7 +335,6 @@
             this.ClientSize = new System.Drawing.Size(603, 555);
             this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.labelValidacionPrecio);
             this.Controls.Add(this.labelValidacionNombre);
             this.Controls.Add(this.labelValidacionCodigo);
@@ -410,7 +395,6 @@
         private System.Windows.Forms.Label labelValidacionCodigo;
         private System.Windows.Forms.Label labelValidacionNombre;
         private System.Windows.Forms.Label labelValidacionPrecio;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAgregarImagen;
     }

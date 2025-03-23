@@ -75,8 +75,8 @@
             this.panelBtns = new System.Windows.Forms.Panel();
             this.labelApellidoUusario = new System.Windows.Forms.Label();
             this.panelHoraUsuario = new System.Windows.Forms.Panel();
-            this.btnActualizarListado = new System.Windows.Forms.Button();
             this.circularPictureBox1 = new Presentacion.CircularPictureBox();
+            this.btnActualizarListado = new System.Windows.Forms.Button();
             this.panelCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenuLateral.SuspendLayout();
@@ -463,6 +463,7 @@
             this.txtBusquedaPrincipal.Size = new System.Drawing.Size(187, 20);
             this.txtBusquedaPrincipal.TabIndex = 1;
             this.txtBusquedaPrincipal.Text = "Buscar solo por nombre del articulo";
+            this.txtBusquedaPrincipal.Click += new System.EventHandler(this.txtBusquedaPrincipal_Click);
             // 
             // labelBusqTitulo
             // 
@@ -640,22 +641,6 @@
             this.panelHoraUsuario.Size = new System.Drawing.Size(864, 120);
             this.panelHoraUsuario.TabIndex = 14;
             // 
-            // btnActualizarListado
-            // 
-            this.btnActualizarListado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActualizarListado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(58)))), ((int)(((byte)(69)))));
-            this.btnActualizarListado.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
-            this.btnActualizarListado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarListado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarListado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
-            this.btnActualizarListado.Location = new System.Drawing.Point(830, 51);
-            this.btnActualizarListado.Name = "btnActualizarListado";
-            this.btnActualizarListado.Size = new System.Drawing.Size(98, 34);
-            this.btnActualizarListado.TabIndex = 7;
-            this.btnActualizarListado.Text = "Actualizar";
-            this.btnActualizarListado.UseVisualStyleBackColor = false;
-            this.btnActualizarListado.Click += new System.EventHandler(this.btnActualizarListado_Click);
-            // 
             // circularPictureBox1
             // 
             this.circularPictureBox1.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
@@ -671,6 +656,22 @@
             this.circularPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.circularPictureBox1.TabIndex = 10;
             this.circularPictureBox1.TabStop = false;
+            // 
+            // btnActualizarListado
+            // 
+            this.btnActualizarListado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnActualizarListado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(58)))), ((int)(((byte)(69)))));
+            this.btnActualizarListado.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
+            this.btnActualizarListado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarListado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizarListado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(225)))));
+            this.btnActualizarListado.Location = new System.Drawing.Point(830, 51);
+            this.btnActualizarListado.Name = "btnActualizarListado";
+            this.btnActualizarListado.Size = new System.Drawing.Size(98, 34);
+            this.btnActualizarListado.TabIndex = 7;
+            this.btnActualizarListado.Text = "Actualizar";
+            this.btnActualizarListado.UseVisualStyleBackColor = false;
+            this.btnActualizarListado.Click += new System.EventHandler(this.btnActualizarListado_Click);
             // 
             // FormPrincipal
             // 

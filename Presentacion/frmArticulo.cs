@@ -62,7 +62,6 @@ namespace Presentacion
                     if (EditarArticulo == true)
                     {
                         btnAceptar.Text = "Aceptar cambios";
-                        btnAceptar.Enabled = false;
                         btnAgregarImagen.Enabled = true;
                         cargarInputs(articulo);
                         activarInputs();
@@ -139,15 +138,6 @@ namespace Presentacion
             comboBoxMarca.Enabled = false;
         }
 
-        private void activarBtnAgregar()
-        {
-            if (formatoCodigoArticulo() && formatoNombre() )
-            {
-                btnAceptar.Enabled = true;
-            }
-           
-        }
-
         private void agregarNuevoArticulo(Articulo articulo)
         {
             ArticuloNegocio negocio = new ArticuloNegocio(); 
@@ -167,29 +157,42 @@ namespace Presentacion
                 decimal.TryParse(txtPrecio.Text, out numDecimal);
                 articulo.Precio = numDecimal;
                 articulo.Descripcion = txtDescripcion.Text;
-                if (editarArticulo == true)
+                if (formatoCodigoArticulo() && formatoNombre() && formatoPrecio())
                 {
+                    if (editarArticulo == true)
+                    {
                         negocio.modificar(articulo);
-                        MessageBox.Show("Se agregaron los cambios correctamente. Actualice la lista para ver los cambios");
+                        MessageBox.Show("Se agregaron los cambios correctamente. Actualice la lista para ver los cambios","Proceso exitoso");
+                    }
+                    else
+                    {
+                        if (negocio.ExisteArticuloConCodigo(articulo.Codigo))
+                        {
+                            MessageBox.Show("Ya existe un articulo con ese codigo");
+                        }
+                        else
+                        {
+                            negocio.agregarArticulo(articulo);
+                            MessageBox.Show("Se agrego correctamente el articulo. Actualice la lista para ver los cambios");
+                        }
+
+                    }
+
+                    if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP:")))
+                    {
+                        File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+                    }
+
+                    this.Close();
+
                 } else
                 {
-                    if (negocio.ExisteArticuloConCodigo(articulo.Codigo))
-                    {
-                        MessageBox.Show("Ya existe un articulo con ese codigo");
-                    } else
-                    {
-                        negocio.agregarArticulo(articulo);
-                        MessageBox.Show("Se agrego correctamente el articulo. Actualice la lista para ver los cambios");
-                    }
-                    
+                    MessageBox.Show("Error");
+
                 }
 
-                if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP:")))
-                {
-                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
-                }
 
-                this.Close();
+                
 
             }
             catch (Exception ex)
@@ -201,7 +204,6 @@ namespace Presentacion
         private void btnAceptar_Click(object sender, EventArgs e)
         {
                 agregarNuevoArticulo(articulo);
-                this.Close();
         }
 
         private void cargarComboBox()
@@ -231,24 +233,15 @@ namespace Presentacion
             string patronCodigo = @"^[A-Za-z]{1,2}\d{2,3}$";
 
             Regex regexCodigo = new Regex(patronCodigo);
- 
+            
             if (!(regexCodigo.IsMatch(codigo)))
             {
-                labelValidacionCodigo.Visible = true;
-                labelValidacionCodigo.Text = "Error! Formato incorrecto";
-                txtNombre.Enabled = false;
-                txtDescripcion.Enabled = false;
-                comboBoxCategoria.Enabled = false;
-                comboBoxMarca.Enabled = false;
-                txtPrecio.Enabled = false;
-                txtUrlImagen.Enabled = false;
-                btnAceptar.Enabled = false;
+                labelValidacionCodigo.Text = "Campo vacio o formato incorrecto";
                 return false;
 
             } else
             {
                 labelValidacionCodigo.Visible = false;
-                activarInputs();
                 return true;
             }
 
@@ -263,22 +256,14 @@ namespace Presentacion
 
             Regex regex = new Regex(patronNombre);
 
+
             if (!(regex.IsMatch(nombre)))
             {
-                labelValidacionNombre.Visible = true;
-                labelValidacionNombre.Text = "Error! No puede estar vacio";
-                txtDescripcion.Enabled = false;
-                comboBoxCategoria.Enabled = false;
-                comboBoxMarca.Enabled = false;
-                txtPrecio.Enabled = false;
-                txtUrlImagen.Enabled = false;
-                btnAceptar.Enabled = false;
+                labelValidacionNombre.Text = "Campo vacio o formato incorrecto";
                 return false;
             } else
             {
                 labelValidacionNombre.Text = "";
-                labelValidacionNombre.Visible = false;
-                activarInputs();
                 return true;
             }
 
@@ -295,56 +280,17 @@ namespace Presentacion
 
             if (!(regexPrecio.IsMatch(precio)))
             {
-                labelValidacionPrecio.Visible = true;
-                labelValidacionPrecio.Text = "Error!Formato incorrecto";
-                txtCodArticulo.Enabled = false;
-                txtNombre.Enabled = false;
-                txtDescripcion.Enabled = false;
-                comboBoxCategoria.Enabled = false;
-                comboBoxMarca.Enabled = false;
-                txtUrlImagen.Enabled = false;
-                btnAceptar.Enabled = false;
+                labelValidacionPrecio.Text = "Campo vacio o formato incorrecto";
                 return false;
             } else
             {
                 labelValidacionPrecio.Text = "";
-                labelValidacionPrecio.Visible = false;
-                activarInputs();
                 return true;
             }
-
         
         }
 
-        private void txtCodArticulo_Leave(object sender, EventArgs e)
-        {
-            formatoCodigoArticulo();
-
-        }
-
-        private void txtCodArticulo_TextChanged(object sender, EventArgs e)
-        {
-            formatoCodigoArticulo();
-        }
-
-        private void txtNombre_Leave(object sender, EventArgs e)
-        {
-
-            activarBtnAgregar();
-            
-        }
-
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
-            activarBtnAgregar();
-        }
     
-        private void txtPrecio_TextChanged(object sender, EventArgs e)
-        {
-
-            formatoPrecio();
-
-        }
 
         private void txtUrlImagen_Leave(object sender, EventArgs e)
         {
@@ -360,6 +306,12 @@ namespace Presentacion
                 txtUrlImagen.Text = archivo.FileName;
                 cargarImagen(archivo.FileName);
             }
+        }
+
+
+        private void txtCodArticulo_Click(object sender, EventArgs e)
+        {
+            txtCodArticulo.Text = "";
         }
     }
 }
