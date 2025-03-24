@@ -44,7 +44,7 @@ namespace Presentacion
 
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
-            this.WindowState |= FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void timer_Tick(object sender, EventArgs e)
