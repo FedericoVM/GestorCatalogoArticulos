@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using negocio;
 using dominio;
-using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Presentacion
 {
@@ -100,7 +94,7 @@ namespace Presentacion
 
         }
 
-        private void cargar()
+        public void cargar()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
 
@@ -109,6 +103,10 @@ namespace Presentacion
                 articulos = negocio.listarArticulos();
                 dgvForm.DataSource = articulos;
                 ocultarColumnas();
+                CultureInfo culturaAR = new CultureInfo("es-AR");
+                dgvForm.Columns["Precio"].DefaultCellStyle.Format = "C2";
+                dgvForm.Columns["Precio"].DefaultCellStyle.FormatProvider = culturaAR;
+
 
             }
             catch (Exception ex)
@@ -151,6 +149,11 @@ namespace Presentacion
         {
             frmArticulo nuevaVentana = new frmArticulo();
             nuevaVentana.ShowDialog();
+            if (nuevaVentana.DialogResult == DialogResult.OK)
+            {
+                cargar();
+            }
+            
         }
 
         private void btnActualizarListado_Click(object sender, EventArgs e)
@@ -160,6 +163,11 @@ namespace Presentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (dgvForm.CurrentRow == null)
+            {
+                MessageBox.Show("Debe seleccionar un articulo", "Error");
+                return;
+            }
             ArticuloNegocio negocio = new ArticuloNegocio();
             DialogResult resultado = MessageBox.Show("¿Deseas borrar el articulo de la base de datos? ", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             try
@@ -168,7 +176,8 @@ namespace Presentacion
                 {
                     Articulo articulo = (Articulo)dgvForm.CurrentRow.DataBoundItem;
                     negocio.eliminarArticulo(articulo.Id);
-                    MessageBox.Show("Se elimino correctamente. Actualizar la lista para ver los cambios", "Eliminar");
+                    MessageBox.Show("Se elimino correctamente.", "Eliminar");
+                    cargar();
                 }
 
             }
@@ -193,6 +202,10 @@ namespace Presentacion
                     frmArticulo formArticulo = new frmArticulo(articuloEditar);
                     formArticulo.EditarArticulo = true;
                     formArticulo.ShowDialog();
+                    if (formArticulo.DialogResult == DialogResult.OK)
+                    {
+                        cargar();
+                    }
 
                 }
                 catch (Exception ex)
@@ -203,7 +216,7 @@ namespace Presentacion
             {
                 MessageBox.Show("Debe seleccionar un articulo","Error");
             }
-               
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -229,6 +242,10 @@ namespace Presentacion
                 {
                     dgvForm.DataSource = negocio.filtrar(nombre, marca, categoria,precioMin,precioMax);
                     ocultarColumnas();
+                    CultureInfo culturaAR = new CultureInfo("es-AR");
+                    dgvForm.Columns["Precio"].DefaultCellStyle.Format = "C2";
+                    dgvForm.Columns["Precio"].DefaultCellStyle.FormatProvider = culturaAR;
+                    btnLimpiarFiltroAvanzado.Visible = true;
                 }
              
 
@@ -277,7 +294,7 @@ namespace Presentacion
             {
                 dgvForm.DataSource = null;
 
-                if (busqueda.Length == 0)
+                if (busqueda.Length == 0 )
                 {
                     listaFiltrada = articulos;
                 }
@@ -295,12 +312,16 @@ namespace Presentacion
                     {
                         dgvForm.DataSource = listaFiltrada;
                         ocultarColumnas();
+                        btnLimpiarFiltroSimple.Visible = true;
                     }
                     
                 }
 
                 dgvForm.DataSource = null;
                 dgvForm.DataSource = listaFiltrada;
+                CultureInfo culturaAR = new CultureInfo("es-AR");
+                dgvForm.Columns["Precio"].DefaultCellStyle.Format = "C2";
+                dgvForm.Columns["Precio"].DefaultCellStyle.FormatProvider = culturaAR;
                 ocultarColumnas();
             }
             catch (Exception ex)
@@ -313,6 +334,22 @@ namespace Presentacion
         private void txtBusquedaPrincipal_Click(object sender, EventArgs e)
         {
             txtBusquedaPrincipal.Text = "";
+        }
+
+        private void btnLimpiarFiltroSimple_Click(object sender, EventArgs e)
+        {
+            txtBusquedaPrincipal.Text = "Buscar por nombre";
+            btnLimpiarFiltroSimple.Visible = false;
+            cargar();
+        }
+
+        private void btnLimpiarFiltroAvanzado_Click(object sender, EventArgs e)
+        {
+            btnLimpiarFiltroSimple.Visible = false;
+            txtNombreBusqueda.Text = "";
+            txtPrecioMaxBusqueda.Text = "0.00";
+            txtPrecioMinBusqueda.Text = "0.00";
+            cargar();
         }
     }
 

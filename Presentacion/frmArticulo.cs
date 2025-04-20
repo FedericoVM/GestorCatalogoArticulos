@@ -1,15 +1,8 @@
 ﻿using dominio;
 using negocio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 
@@ -86,7 +79,7 @@ namespace Presentacion
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                System.Windows.MessageBox.Show(ex.ToString());
             }
          
         }
@@ -115,7 +108,6 @@ namespace Presentacion
             }
         }
 
-         
         private void activarInputs()
         {
             txtCodArticulo.Enabled = true;
@@ -144,8 +136,21 @@ namespace Presentacion
 
             try
             {
-                articulo.Codigo = txtCodArticulo.Text;
+                if (!formatoCodigoArticulo()) 
+                {
+                    return;
+                } 
+                articulo.Codigo = txtCodArticulo.Text.ToUpper();
                 articulo.Nombre = txtNombre.Text;
+                if (articulo.Nombre == "")
+                {
+                    labelValidacionNombre.Text = "El campo nombre no puede estar vacio";
+                    return;
+                }
+                else
+                {
+                    labelValidacionNombre.Text = "";
+                }
                 articulo.Marca = (Marca)comboBoxMarca.SelectedItem;
                 articulo.Categoria = (Categoria)comboBoxCategoria.SelectedItem;
                 articulo.ImagenUrl = txtUrlImagen.Text;
@@ -155,25 +160,34 @@ namespace Presentacion
                 }
                 decimal numDecimal;
                 decimal.TryParse(txtPrecio.Text, out numDecimal);
+                if (!formatoPrecio())
+                {
+                    return;  
+                }
+
                 articulo.Precio = numDecimal;
+
                 articulo.Descripcion = txtDescripcion.Text;
-                if (formatoCodigoArticulo() && formatoNombre() && formatoPrecio())
+
+                if (formatoCodigoArticulo() && formatoPrecio())
                 {
                     if (editarArticulo == true)
                     {
                         negocio.modificar(articulo);
-                        MessageBox.Show("Se agregaron los cambios correctamente. Actualice la lista para ver los cambios","Proceso exitoso");
+                        System.Windows.MessageBox.Show("Se agregaron los cambios correctamente", "Proceso exitoso");
+                        this.DialogResult = DialogResult.OK;
                     }
                     else
                     {
                         if (negocio.ExisteArticuloConCodigo(articulo.Codigo))
                         {
-                            MessageBox.Show("Ya existe un articulo con ese codigo");
+                            System.Windows.MessageBox.Show("Ya existe un articulo con ese codigo");
                         }
                         else
                         {
                             negocio.agregarArticulo(articulo);
-                            MessageBox.Show("Se agrego correctamente el articulo. Actualice la lista para ver los cambios");
+                            this.DialogResult = DialogResult.OK;
+                            System.Windows.MessageBox.Show("Se agrego correctamente el articulo", "Proceso exitoso");
                         }
 
                     }
@@ -183,21 +197,14 @@ namespace Presentacion
                         File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
                     }
 
-                    this.Close();
 
-                } else
-                {
-                    MessageBox.Show("Error");
 
                 }
-
-
-                
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                System.Windows.MessageBox.Show(ex.ToString());
             }
         }
 
@@ -223,7 +230,7 @@ namespace Presentacion
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                System.Windows.MessageBox.Show(ex.ToString());
             }
         }
 
@@ -233,10 +240,20 @@ namespace Presentacion
             string patronCodigo = @"^[A-Za-z]{1,2}\d{2,3}$";
 
             Regex regexCodigo = new Regex(patronCodigo);
-            
+
+            if(codigo is null || codigo == "")
+            {
+                labelValidacionCodigo.Text = "El campo codigo no puede estar vacio";
+                return false;
+            }
+            else
+            {
+                labelValidacionCodigo.Text = "";
+            }
+
             if (!(regexCodigo.IsMatch(codigo)))
             {
-                labelValidacionCodigo.Text = "Campo vacio o formato incorrecto";
+                labelValidacionCodigo.Text = "formato incorrecto";
                 return false;
 
             } else
@@ -249,38 +266,27 @@ namespace Presentacion
  
         }
 
-        private bool formatoNombre()
-        {
-            string nombre = txtNombre.Text;
-            string patronNombre = @"^\S+(?: \S+)*$";
-
-            Regex regex = new Regex(patronNombre);
-
-
-            if (!(regex.IsMatch(nombre)))
-            {
-                labelValidacionNombre.Text = "Campo vacio o formato incorrecto";
-                return false;
-            } else
-            {
-                labelValidacionNombre.Text = "";
-                return true;
-            }
-
-       
-        }
-
         private bool formatoPrecio()
         {
 
             string precio = txtPrecio.Text;
-            string patronPrecio = @"^\d+(\,\d{1,4})?$";
+            string patronPrecio = @"^(?:\d{1,3}(?:[ .]\d{3})*|\d+)(?:,\d{1,4})?$";
 
             Regex regexPrecio = new Regex(patronPrecio);
 
+            if (precio is null || precio == "")
+            {
+                labelValidacionPrecio.Text = "El campo precio no puede estar vacio";
+                return false;
+            }
+            else
+            {
+                labelValidacionPrecio.Text = "";
+            }
+
             if (!(regexPrecio.IsMatch(precio)))
             {
-                labelValidacionPrecio.Text = "Campo vacio o formato incorrecto";
+                labelValidacionPrecio.Text = "El formato es incorrecto";
                 return false;
             } else
             {
@@ -289,8 +295,6 @@ namespace Presentacion
             }
         
         }
-
-    
 
         private void txtUrlImagen_Leave(object sender, EventArgs e)
         {
@@ -308,10 +312,5 @@ namespace Presentacion
             }
         }
 
-
-        private void txtCodArticulo_Click(object sender, EventArgs e)
-        {
-            txtCodArticulo.Text = "";
-        }
     }
 }
